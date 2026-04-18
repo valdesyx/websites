@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rhapsody Anderson</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  body {
+    background: #ffffff;
+    color: #111;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at top left, #f5f7ff, transparent 40%),
+                radial-gradient(circle at bottom right, #f0fff4, transparent 40%);
+    z-index: -2;
+  }
+
+  .lines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .lines::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(0,0,0,0.04) 0px,
+      rgba(0,0,0,0.04) 1px,
+      transparent 1px,
+      transparent 60px
+    );
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #eee;
+    z-index: 10;
+  }
+
+  nav a {
+    margin-left: 18px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+  }
+
+  nav a:hover { color: #000; }
+
+  .hero {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .hero h1 { font-size: 56px; }
+  .hero p { margin-top: 10px; font-size: 18px; color: #555; max-width: 700px; }
+
+  .tag {
+    margin-top: 15px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    background: #f7f7f7;
+    border: 1px solid #eee;
+  }
+
+  section {
+    max-width: 1000px;
+    margin: auto;
+    padding: 80px 20px;
+  }
+
+  h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+    padding: 0 18px;
+  }
+
+  h2::before,
+  h2::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 1px;
+    background: #111;
+    opacity: 0.2;
+  }
+
+  h2::before { left: -60px; }
+  h2::after { right: -60px; }
+
+  .card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 18px;
+    padding: 25px;
+    line-height: 1.75;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+  }
+
+  .box {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 14px;
+    padding: 20px;
+    text-align: left;
+    transition: 0.2s;
+    line-height: 1.5;
+  }
+
+  .box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  }
+
+  .contact {
+    text-align: center;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 18px;
+    padding: 60px 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  }
+
+  .btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 18px;
+    border: 1px solid #111;
+    border-radius: 999px;
+    text-decoration: none;
+    color: #111;
+  }
+
+  .btn:hover {
+    background: #111;
+    color: #fff;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="lines"></div>
+<!-- FLOATING SNAKE BACKGROUND IMAGES -->
+<div class="bg-images">
+  <img src="https://www.awsfzoo.com/media/unnamed-12.jpg" class="bg img1" alt="snake">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSErAPFr5aBMeHCnpWYQIgpzct0yLG1_O5hhA&s" class="bg img2" alt="snake">
+  <img src="https://cdn-assets-us.frontify.com/s3/frontify-enterprise-files-us/eyJwYXRoIjoidXZhLWhlYWx0aFwvZmlsZVwvc3AycUc1UENFbzZiS0h2U0NIdlQuanBnIn0:uva-health:mTN9mC9uESuM4IISKnApqd5h5-oCSeIIYUFwpU2-T7k" class="bg img3" alt="snake">
+  <img src="https://www.parksconservancy.org/sites/default/files/styles/social_media/public/2025-09/SFGarterSnake_MarisaIshimatsu_090825_2x1.jpg.webp?itok=vZHflr8i" class="bg img4" alt="snake">
+  <img src="https://npr.brightspotcdn.com/dims4/default/e053f16/2147483647/strip/true/crop/1320x721+0+0/resize/880x481!/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Fb8%2F2f%2F4ac30f06413491d2f47beee11374%2Ffontanaverde-snakes-2.jpg" class="bg img5" alt="snake">
+</div>
+<nav>
+  <div><b>Rhapsody</b></div>
+  <div>
+    <a href="#about">About</a>
+    <a href="#interests">Interests</a>
+    <a href="#life">Life</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>Rhapsody Anderson</h1>
+  <p>
+    16 • focusing on education • moving to sweden here in a few years
+  </p>
+  <div class="tag">rhythm development • biology • psychology • outdoors</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>About Me</h2>
+
+  <div class="card">
+    I’m <b>Rhapsody Anderson</b>, gay gay gay
+    <br><br>
+
+    stop looking
+    <br><br>
+
+    i see you
+    <br><br>
+
+    beep beep
+  </div>
+</section>
+
+<!-- INTERESTS -->
+<section id="interests">
+  <h2>Interests</h2>
+
+  <div class="grid">
+
+    <div class="box">
+      🎵 <b>Rhythm Games</b><br><br>
+      stop it
+    </div>
+
+    <div class="box">
+      🐍 <b>Reptiles</b><br><br>
+      i eat snakes for breakfast
+    </div>
+
+    <div class="box">
+      💻 <b>Coding</b><br><br>
+      code my ass
+    </div>
+
+    <div class="box">
+      🌿 <b>Outdoors</b><br><br>
+      i eat weed for lunch
+    </div>
+
+    <div class="box">
+      🏋️ <b>Fitness</b><br><br>
+      i lift rafaela
+    </div>
+
+    <div class="box">
+      🤝 <b>Helping Others</b><br><br>
+      i HATE people
+    </div>
+
+  </div>
+</section>
+
+<!-- LIFE -->
+<section id="life">
+  <h2>Life</h2>
+
+  <div class="card">
+    i dont like eating bugs
+    <br><br>
+
+    or maybe i do
+    <br><br>
+
+    i eat rafaelas and i love it
+    <br><br>
+
+    thank you
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact">
+    <h2>Contact</h2>
+
+    <p>
+      If you need to reach me, email is the best way.
+    </p>
+
+    <br>
+
+    <p><b>Email:</b> valdesyx.azshara@gmail.com</p>
+
+    <a class="btn" href="mailto:yourname@email.com">Send Email</a>
+  </div>
+</section>
+
+</body>
+</html>
+
+CSS
+
+/* FIXED BACKGROUND IMAGE LAYER */
+.bg-images {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* shared image style */
+.bg {
+  position: absolute;
+  width: 300px;
+  opacity: 0.7;
+  border-radius: 20px;
+  filter: grayscale(0%);
+}
+
+/* positions */
+.img1 {
+  top: 120px;
+  left: 40px;
+  transform: rotate(-10deg);
+}
+
+.img2 {
+  top: 300px;
+  right: 60px;
+  transform: rotate(8deg);
+}
+
+.img3 {
+  bottom: 100px;
+  left: 23%;
+  transform: rotate(-5deg);
+}
+
+.img4 {
+  top: 700px;
+  right: 25%;
+  transform: rotate(12deg);
+}
+
+.img5 {
+  top: 20px;
+  left: 63%;
+  transform: translateX(-50%) rotate(6deg);
+  
+  /* CONTAINER */
+.decor {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* BASE CORNER STYLE */
+.corner {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+/* TOP LEFT */
+.tl {
+  top: 40px;
+  left: 40px;
+  border-right: none;
+  border-bottom: none;
+}
+
+/* TOP RIGHT */
+.tr {
+  top: 40px;
+  right: 40px;
+  border-left: none;
+  border-bottom: none;
+}
+
+/* BOTTOM LEFT */
+.bl {
+  bottom: 40px;
+  left: 40px;
+  border-right: none;
+  border-top: none;
+}
+  
+  /* CONTAINER */
+.decor {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* BASE CORNER STYLE */
+.corner {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+/* TOP LEFT */
+.tl {
+  top: 40px;
+  left: 40px;
+  border-right: none;
+  border-bottom: none;
+}
+
+/* TOP RIGHT */
+.tr {
+  top: 40px;
+  right: 40px;
+  border-left: none;
+  border-bottom: none;
+}
+
+/* BOTTOM LEFT */
+.bl {
+  bottom: 40px;
+  left: 40px;
+  border-right: none;
+  border-top: none;
+}
+
+  h1, h2, h3, p {
+  text-shadow: 0px 3px 12px rgba (0, 0, 0, 0.5);
+}
