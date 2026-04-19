@@ -314,7 +314,7 @@ CSS
 .bg {
   position: absolute;
   width: 300px;
-  opacity: 0.7;
+  opacity: 0.8;
   border-radius: 20px;
   filter: grayscale(0%);
 }
